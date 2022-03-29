@@ -5,6 +5,7 @@ import com.todo.todobackend.repo.CategoryRepository;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 @Transactional
@@ -16,7 +17,13 @@ public class CategoryService {
     }
 
 
-    public Category findById(Long id){
+    public Category findById(Long id) {
         return categoryRepository.findById(id).get(); //60132L
+    }
+    public List<Category> findAll(String email){
+        return categoryRepository.findByUserEmailOrderByTitleAsc(email);
+    }
+    public Category add(Category category) {
+        return categoryRepository.save(category);
     }
 }
